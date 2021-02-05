@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> answersArr = new ArrayList<Integer>(); // creating answers holding array
     Button goButton;
     int locationOfCorrectAnswer;
+    TextView result;
 
     public void start(View view){ // starting button
         goButton.setVisibility(View.INVISIBLE);
@@ -24,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
     public void chooseAnswer(View view){ // function runs when a option is clicked
         if(Integer.toString(locationOfCorrectAnswer).equals(view.getTag().toString())){
             Log.i("Correct!", "You got it!");
+            result.setText("Correct!");
         }else{
             Log.i("Wrong!", "Better luck next time.");
+            result.setText("Wrong!");
         }
 
 
@@ -35,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView questionTextView = (TextView)findViewById(R.id.questionsTextView);
+
         goButton = (Button) findViewById(R.id.goButton);
+        TextView questionTextView = (TextView)findViewById(R.id.questionsTextView);
         Button button0 = (Button)findViewById(R.id.button0);
         Button button1 = (Button)findViewById(R.id.button1);
         Button button2 = (Button)findViewById(R.id.button2);
         Button button3 = (Button)findViewById(R.id.button3);
+        result = (TextView) findViewById(R.id.resultTextView);
+
+        result.setText(null); // Setting initial value of result so nothing appears on starting
 
         Random r = new Random(); //random object to pick random numbers
         int a = r.nextInt(21);
